@@ -118,7 +118,7 @@ SET city =
     CASE
         WHEN coordinates = '(48.8566, 2.3522)' THEN 'Paris'
         WHEN coordinates = '(45.764, 4.8357)' THEN 'Lyon'
-	WHEN coordinates = '(43.7102, 7.262)' THEN 'Nice'
+		WHEN coordinates = '(43.7102, 7.262)' THEN 'Nice'
         ELSE 'Unknown'
     END;
 
@@ -482,4 +482,5 @@ WHERE EXISTS (
 	WHERE Portfolio_project..weather_france.wind_direction BETWEEN .55 AND .56
 		AND Portfolio_project..weather_france.precipitation_24_hours = 0
 );
+
 
