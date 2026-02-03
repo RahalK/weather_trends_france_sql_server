@@ -79,12 +79,27 @@ ALTER COLUMN sunset DATETIME;
 
 -- Section 5: Seasonal trends
 -- Count the number of records for each day, considering each timestamp separately
+'''
 SELECT
     DAY(CONVERT(datetime, date_and_time)) as day,
     COUNT(*) AS records_count
 FROM Portfolio_project..weather_france wf 
 GROUP BY DAY(CONVERT(datetime, date_and_time))
 ORDER BY 1;
+'''
+
+-- Better version:
+WITH cleaned AS (
+    SELECT 
+        DAY(CONVERT(datetime, date_and_time)) AS day
+    FROM Portfolio_project..weather_france
+)
+SELECT 
+    day,
+    COUNT(*) AS records_count
+FROM cleaned
+GROUP BY day
+ORDER BY day;
 
 
 -- Section 6: Data manipulation
@@ -482,6 +497,7 @@ WHERE EXISTS (
 	WHERE Portfolio_project..weather_france.wind_direction BETWEEN .55 AND .56
 		AND Portfolio_project..weather_france.precipitation_24_hours = 0
 );
+
 
 
 
